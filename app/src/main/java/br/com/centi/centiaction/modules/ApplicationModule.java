@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import javax.inject.Singleton;
+
 import br.com.centi.centiaction.annotations.ApplicationContext;
 import br.com.centi.centiaction.annotations.DatabaseInfo;
 import dagger.Module;
@@ -28,6 +30,7 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
     Application provideApplication() {
         return mApplication;
     }

@@ -13,14 +13,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import javax.inject.Inject;
+
 import br.com.centi.centiaction.modules.ActivityComponent;
 import br.com.centi.centiaction.modules.ActivityModule;
 import br.com.centi.centiaction.modules.DaggerActivityComponent;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityComponent activityComponent;
+
+//    @Inject
+//    Retrofit retrofit;
 
     public ActivityComponent getActivityComponent() {
         if (activityComponent == null) {
@@ -38,6 +44,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+       // ((DemoApplication) getApplication()).getNetComponent().inject(this);
 
         getActivityComponent().inject(this);
 
