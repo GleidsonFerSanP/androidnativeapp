@@ -12,24 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import javax.inject.Inject;
-
-import br.com.centi.centiaction.annotations.modules.ActivityComponent;
-import br.com.centi.centiaction.annotations.modules.ActivityModule;
-import br.com.centi.centiaction.annotations.modules.DaggerActivityComponent;
-import br.com.centi.centiaction.api.NetworkApi;
-import br.com.centi.centiaction.providers.DataManager;
+import br.com.centi.centiaction.modules.ActivityComponent;
+import br.com.centi.centiaction.modules.ActivityModule;
+import br.com.centi.centiaction.modules.DaggerActivityComponent;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    @Inject
-    NetworkApi networkApi;
-
-    @Inject
-    DataManager dataManager;
 
     private ActivityComponent activityComponent;
 
@@ -60,9 +49,6 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
-        if(networkApi.validateUser("gleidson","123"))
-            Toast.makeText(this,"Valido",Toast.LENGTH_LONG) .show();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

@@ -5,9 +5,9 @@ import android.content.Context;
 
 import javax.inject.Inject;
 
-import br.com.centi.centiaction.annotations.modules.ApplicationComponent;
-import br.com.centi.centiaction.annotations.modules.ApplicationModule;
-import br.com.centi.centiaction.annotations.modules.DaggerApplicationComponent;
+import br.com.centi.centiaction.modules.ApplicationComponent;
+import br.com.centi.centiaction.modules.ApplicationModule;
+import br.com.centi.centiaction.modules.DaggerApplicationComponent;
 import br.com.centi.centiaction.providers.DataManager;
 
 /**

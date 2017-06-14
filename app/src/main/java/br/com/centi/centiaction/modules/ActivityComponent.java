@@ -1,4 +1,4 @@
-package br.com.centi.centiaction.annotations.modules;
+package br.com.centi.centiaction.modules;
 
 import br.com.centi.centiaction.MainActivity;
 import br.com.centi.centiaction.annotations.PerActivity;

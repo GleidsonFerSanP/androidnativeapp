@@ -1,4 +1,4 @@
-package br.com.centi.centiaction.annotations.modules;
+package br.com.centi.centiaction.modules;
 
 import android.app.Application;
 import android.content.Context;
