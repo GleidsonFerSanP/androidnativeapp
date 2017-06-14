@@ -12,9 +12,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import javax.inject.Inject;
+
+import br.com.centi.centiaction.annotations.modules.ActivityComponent;
+import br.com.centi.centiaction.annotations.modules.ActivityModule;
+import br.com.centi.centiaction.annotations.modules.DaggerActivityComponent;
+import br.com.centi.centiaction.api.NetworkApi;
+import br.com.centi.centiaction.providers.DataManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @Inject
+    NetworkApi networkApi;
+
+    @Inject
+    DataManager dataManager;
+
+    private ActivityComponent activityComponent;
+
+    public ActivityComponent getActivityComponent() {
+        if (activityComponent == null) {
+            activityComponent = DaggerActivityComponent.builder()
+                    .activityModule(new ActivityModule(this))
+                    .applicationComponent(DemoApplication.get(this).getComponent())
+                    .build();
+        }
+        return activityComponent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +49,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getActivityComponent().inject(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +60,9 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
+        if(networkApi.validateUser("gleidson","123"))
+            Toast.makeText(this,"Valido",Toast.LENGTH_LONG) .show();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
